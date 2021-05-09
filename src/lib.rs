@@ -1,4 +1,5 @@
 pub mod config;
+pub mod server;
 
 use conv::ValueInto;
 use image::imageops::FilterType;
@@ -33,7 +34,7 @@ pub fn read_images(img_dir: &str) -> Vec<String> {
     images
 }
 
-pub fn generate(input_file: &PathBuf, output_file: &PathBuf, text: &str) {
+pub fn write_meme(input_file: &PathBuf, output_file: &PathBuf, text: &str) {
     let image = image::open(input_file)
         .expect("failed reading image")
         .to_rgba8(); //RgbImage::new(200, 200);

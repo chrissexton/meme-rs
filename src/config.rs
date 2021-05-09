@@ -21,4 +21,36 @@ impl Config {
         let f = std::fs::File::open("config.yml").expect("failed opening config file");
         serde_yaml::from_reader(f).expect("failed parsing config file")
     }
+
+    pub fn create_uniform_distribution(&self) -> Vec<MemeIndex> {
+        let mut uniform_dist = vec![];
+        for (idx, c) in self.images.iter().enumerate() {
+            if c.raw {
+                uniform_dist.push(MemeIndex::new(idx, 0));
+            } else {
+                for t_idx in 0..self.common_texts.len() {
+                    uniform_dist.push(MemeIndex::new(idx, t_idx));
+                }
+                for t_idx in 0..c.texts.len() {
+                    uniform_dist.push(MemeIndex::new(idx, self.common_texts.len() + t_idx));
+                }
+            }
+        }
+        uniform_dist
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct MemeIndex {
+    pub image_idx: usize,
+    pub text_idx: usize,
+}
+
+impl MemeIndex {
+    pub fn new(image_idx: usize, text_idx: usize) -> Self {
+        MemeIndex {
+            image_idx,
+            text_idx,
+        }
+    }
 }
