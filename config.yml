@@ -1,0 +1,19 @@
+input_dir: ./img
+output_dir: ./gen
+common_texts:
+  - LGTM
+  - APPROVED
+  - AWESOME
+images:
+  - name: borat_1.jpg
+    texts:
+      - VERY NICE
+      - BORAT APPROVES
+      - HIGH FIVE
+  - name: bernie.jpg
+    texts:
+      - GOOD JOB
+      - I VOTED
+      - YOU HAVE MY APPROVAL
+  - name: art_approve.jpg
+    raw: true
