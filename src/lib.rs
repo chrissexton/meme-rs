@@ -10,7 +10,6 @@ use imageproc::{
 use rusttype::{Font, Scale};
 use std::{ffi::OsStr, fs, path::PathBuf};
 
-
 pub fn new_id(filename: &str, text: &str) -> String {
     let data = format!("{}_{}", filename, text);
     format!("{:?}", md5::compute(&data))
@@ -48,15 +47,17 @@ pub fn generate(input_file: &PathBuf, output_file: &PathBuf, text: &str) {
     let x = w / 2 - x_offset;
     let y = h - 75;
 
-    draw_stroked(
-        &mut image,
-        text,
-        50.0,
-        (x, y),
-        &font,
-        Rgba([255u8, 255u8, 255u8, 255u8]),
-        Rgba([0u8, 0u8, 0u8, 255u8]),
-    );
+    if !text.is_empty() {
+        draw_stroked(
+            &mut image,
+            text,
+            50.0,
+            (x, y),
+            &font,
+            Rgba([255u8, 255u8, 255u8, 255u8]),
+            Rgba([0u8, 0u8, 0u8, 255u8]),
+        );
+    }
     image.save(output_file).expect("failed saving image");
 }
 

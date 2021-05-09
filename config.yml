@@ -3,9 +3,8 @@ output_dir: ./gen
 common_texts:
   - LGTM
   - APPROVED
-  - AWESOME
 images:
-  - name: borat_1.jpg
+  - name: borat_2.jpg
     texts:
       - VERY NICE
       - BORAT APPROVES
@@ -17,3 +16,7 @@ images:
       - YOU HAVE MY APPROVAL
   - name: art_approve.jpg
     raw: true
+  - name: aliens.jpg
+    texts:
+      - BUGS
+      - MORE TECH DEBT

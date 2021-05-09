@@ -1,12 +1,13 @@
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Deserialize)]
 pub struct Config {
     pub input_dir: String,
     pub output_dir: String,
+    #[serde(default)]
     pub common_texts: Vec<String>,
     pub images: Vec<ImageConfig>,
 }
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Deserialize)]
 pub struct ImageConfig {
     pub name: String,
     #[serde(default)]
