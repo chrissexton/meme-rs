@@ -18,5 +18,5 @@ images:
     raw: true
   - name: aliens.jpg
     texts:
-      - BUGS
-      - MORE TECH DEBT
+      - APPROVED | BUGS
+      - TECH DEBT | MORE TECH DEBT

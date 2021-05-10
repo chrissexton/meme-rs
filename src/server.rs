@@ -1,9 +1,4 @@
-use std::{
-    error::Error,
-    fs::File,
-    io::Read,
-    path::{Path, PathBuf},
-};
+use std::{error::Error, fs::{self, File}, io::Read, path::{Path, PathBuf}};
 
 use rand::{prelude::SliceRandom, Rng};
 use warp::{http::HeaderValue, hyper::header::CONTENT_TYPE, reply::Response, Filter};
@@ -12,6 +7,7 @@ use crate::config::{Config, MemeIndex};
 
 pub async fn start() {
     let cfg = Config::load();
+    fs::create_dir_all(&cfg.output_dir).expect("faied creating output directory");
     let uniform_dist = cfg.create_uniform_distribution();
     let meme_msg = HttpMemeMessage::new(cfg, uniform_dist);
     let routes = warp::path::end()

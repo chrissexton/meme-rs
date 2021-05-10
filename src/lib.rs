@@ -44,14 +44,35 @@ pub fn write_meme(input_file: &PathBuf, output_file: &PathBuf, text: &str) {
     let font = Font::try_from_vec(font).unwrap();
 
     let (w, h) = image.dimensions();
-    let x_offset = (text.len() as u32 + 1) * 10;
-    let x = w / 2 - x_offset;
-    let y = h - 75;
-
     if !text.is_empty() {
+        let text_parts = text.split('|').collect::<Vec<_>>();
+        let (text_top, text_bot) = if text_parts.len() == 1 {
+            ("", text_parts[0].trim())
+        } else {
+            (text_parts[0].trim(), text_parts[1].trim())
+        };
+
+        if !text_top.is_empty() {
+            let x_offset = (text_top.len() as u32 + 1) * 10;
+            let x = w / 2 - x_offset;
+            let y = 10;
+            draw_stroked(
+                &mut image,
+                text_top,
+                50.0,
+                (x, y),
+                &font,
+                Rgba([255u8, 255u8, 255u8, 255u8]),
+                Rgba([0u8, 0u8, 0u8, 255u8]),
+            );
+        }
+
+        let x_offset = (text_bot.len() as u32 + 1) * 10;
+        let x = w / 2 - x_offset;
+        let y = h - 75;
         draw_stroked(
             &mut image,
-            text,
+            text_bot,
             50.0,
             (x, y),
             &font,
