@@ -45,7 +45,7 @@ pub fn write_meme(input_file: &PathBuf, output_file: &PathBuf, text: &str) {
 
     let (w, h) = image.dimensions();
     if !text.is_empty() {
-        let text_parts = text.split('|').collect::<Vec<_>>();
+        let text_parts = text.splitn(2, '|').collect::<Vec<_>>();
         let (text_top, text_bot) = if text_parts.len() == 1 {
             ("", text_parts[0].trim())
         } else {
