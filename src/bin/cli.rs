@@ -53,19 +53,19 @@ fn new_app<'a>() -> App<'a> {
         .about("Generates memes")
         .arg(
             Arg::new("INPUT")
-                .about("Sets the input file to use")
+                .help("Sets the input file to use")
                 .required(true)
                 .index(1),
         )
         .arg(
             Arg::new("OUTPUT")
-                .about("Sets the output file to use")
+                .help("Sets the output file to use")
                 .required(true)
                 .index(2),
         )
         .arg(
             Arg::new("TEXT")
-                .about("Sets the text to use. Lines separated by '|' character")
+                .help("Sets the text to use. Lines separated by '|' character")
                 .required(true)
                 .index(3),
         )
